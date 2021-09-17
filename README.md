@@ -29,14 +29,14 @@ pip install torch-geometric==1.7.2
 pip install ortools==9.0.9048
 ```
 
-## Training
+## Use code
+### Training
 ```
-# generate validation dataset
-python3 data_generator.py
 python3 train.py
 ```
-## Testing
+### Testing
 ```
 python3 test.py
 ```
-
+### Generate validation and testing dataset
+Adjust parameters in `data_generator.py`, then run `python3 data_generator.py`
