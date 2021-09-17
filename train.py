@@ -43,7 +43,7 @@ def train(batch_size, no_nodes, policy_net, l_r, no_agent, iterations, device):
         print(format(sum(reward) / batch_size, '.4f'))
 
         # validate and save best nets
-        if (itr+1) % 1 == 0:
+        if (itr+1) % 100 == 0:
             validation_result = validate(validation_data, policy_net, no_agent, device)
             if validation_result < best_so_far:
                 torch.save(policy_net.state_dict(), './saved_model/{}_{}.pth'.format(str(no_nodes), str(no_agent)))
