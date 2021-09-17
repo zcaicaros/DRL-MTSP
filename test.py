@@ -32,23 +32,25 @@ if __name__ == '__main__':
 
     n_agent = 5
     n_nodes = [400, 500, 600, 700, 800, 900, 1000]
-    batch_size = 1000
+    batch_size = 512
     seeds = [1, 2, 3]
 
     # load net
     policy = Policy(in_chnl=2, hid_chnl=32, n_agent=n_agent, key_size_embd=64,
                     key_size_policy=64, val_size=64, clipping=10, dev=dev)
-    path = './{}.pth'.format(str(50) + '_' + str(n_agent))
+    path = './saved_model/{}.pth'.format(str(50) + '_' + str(n_agent))
     policy.load_state_dict(torch.load(path, map_location=torch.device(dev)))
 
     for size in n_nodes:
+        testing_data = torch.load('./testing_data/testing_data_' + str(size) + '_' + str(batch_size))
         results_per_seed = []
         for seed in seeds:
             print('Size:', size, 'Seed:', seed)
             torch.manual_seed(seed)
             objs = []
             for j in range(batch_size):
-                data = torch.rand(size=[1, size, 2])  # [batch, nodes, fea], fea is 2D location
+                # data = torch.rand(size=[1, size, 2])  # [batch, nodes, fea], fea is 2D location
+                data = testing_data[j].unsqueeze(0)
                 # testing
                 obj = test(policy, data, dev)
                 objs.append(obj)

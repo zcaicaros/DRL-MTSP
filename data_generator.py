@@ -11,9 +11,9 @@ def data_gen(no_nodes, batch_size, flag):
 
 
 if __name__ == '__main__':
-    n_nodes = 50
+    n_nodes = 1000
     b_size = 512
-    flag = 'validation'
+    flag = 'testing'
     torch.manual_seed(3)
 
     data_gen(n_nodes, b_size, flag)
