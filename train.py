@@ -3,14 +3,15 @@ import torch
 from torch_geometric.data import Data
 from torch_geometric.data import Batch
 from validation import validate
+import numpy as np
 
 
-def train(no_batch, no_nodes, policy_net, l_r, no_agent, iterations, device):
+def train(batch_size, no_nodes, policy_net, l_r, no_agent, iterations, device):
 
     # prepare validation data
-    validation_data = torch.load('./validation_data_'+str(no_nodes)+'_'+str(1000))
+    validation_data = torch.load('./validation_data/validation_data_'+str(no_nodes)+'_'+str(batch_size))
     # a large start point
-    best_so_far = 1000000
+    best_so_far = np.inf
     validation_results = []
 
     # optimizer
@@ -18,13 +19,13 @@ def train(no_batch, no_nodes, policy_net, l_r, no_agent, iterations, device):
 
     for itr in range(iterations):
         # prepare training data
-        data = torch.rand(size=[no_batch, no_nodes, 2])  # [batch, nodes, fea], fea is 2D location
+        data = torch.rand(size=[batch_size, no_nodes, 2])  # [batch, nodes, fea], fea is 2D location
         adj = torch.ones([data.shape[0], data.shape[1], data.shape[1]])  # adjacent matrix fully connected
         data_list = [Data(x=data[i], edge_index=torch.nonzero(adj[i], as_tuple=False).t()) for i in range(data.shape[0])]
         batch_graph = Batch.from_data_list(data_list=data_list).to(device)
 
         # get pi
-        pi = policy_net(batch_graph, n_nodes=data.shape[1], n_batch=no_batch)
+        pi = policy_net(batch_graph, n_nodes=data.shape[1], n_batch=batch_size)
         # sample action and calculate log probabilities
         action, log_prob = action_sample(pi)
         # get reward for each batch
@@ -39,7 +40,7 @@ def train(no_batch, no_nodes, policy_net, l_r, no_agent, iterations, device):
 
         if itr % 100 == 0:
             print('\nIteration:', itr)
-        print(format(sum(reward)/no_batch, '.4f'))
+        print(format(sum(reward) / batch_size, '.4f'))
 
         # validate and save best nets
         if (itr+1) % 100 == 0:
