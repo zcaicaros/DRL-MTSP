@@ -25,5 +25,7 @@ pip install ortools==9.0.9048
 
 ## Training
 ```
+# generate validation dataset
+python3 data_generator.py
 python3 train.py
 ```
