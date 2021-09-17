@@ -46,8 +46,7 @@ def train(batch_size, no_nodes, policy_net, l_r, no_agent, iterations, device):
         if (itr+1) % 100 == 0:
             validation_result = validate(validation_data, policy_net, no_agent, device)
             if validation_result < best_so_far:
-                torch.save(policy_net.state_dict(), './{}.pth'.format(
-                    str(no_nodes) + '_' + str(no_agent)))
+                torch.save(policy_net.state_dict(), './saved_model/{}_{}.pth'.format(str(no_nodes), str(no_agent)))
                 print('Found better policy, and the validation result is:', format(validation_result, '.4f'))
                 validation_results.append(validation_result)
                 best_so_far = validation_result
