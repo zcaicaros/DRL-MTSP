@@ -1,5 +1,11 @@
 # A reinforcement learning approach for optimizing multiple traveling salesman problems over graphs
 
+
+## Some differences compared with the original paper
+
+ - We use GIN as the graph embedding network
+ - We use a shared self-attention module for customer assignment 
+
 ## Installation
 python 3.8.8
 
