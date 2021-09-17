@@ -37,8 +37,6 @@ python3 train.py
 ```
 ## Testing
 ```
-# generate testing dataset
-python3 data_generator.py
-python3 train.py
+python3 test.py
 ```
 
