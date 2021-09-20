@@ -5,6 +5,19 @@
 
  - We use GIN as the graph embedding network
  - We use a shared self-attention module for customer assignment 
+ - Paper reference:
+
+```
+@article{hu2020reinforcement,
+  title={A reinforcement learning approach for optimizing multiple traveling salesman problems over graphs},
+  author={Hu, Yujiao and Yao, Yuan and Lee, Wee Sun},
+  journal={Knowledge-Based Systems},
+  volume={204},
+  pages={106244},
+  year={2020},
+  publisher={Elsevier}
+}
+```
 
 ## Installation
 python 3.8.8
