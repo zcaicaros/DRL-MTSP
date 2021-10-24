@@ -3,8 +3,9 @@
 
 ## Some differences compared with the original paper
 
- - We use GIN as the graph embedding network
- - We use a shared self-attention module for customer assignment 
+ - We use GIN as the graph embedding network.
+ - We use a shared self-attention module for customer assignment.
+ - The official implementation can be found [Here](https://github.com/YujiaoHu/MinMax-MTSP).
  - Paper reference:
 
 ```
@@ -18,7 +19,7 @@
   publisher={Elsevier}
 }
 ```
-
+ - We claim that our implementation has the better performance than the original one.
 ## Installation
 python 3.8.8
 
