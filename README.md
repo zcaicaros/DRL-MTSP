@@ -34,11 +34,12 @@ pytorch 1.9.0 with CUDA 11.1
 
 Then install dependencies:
 ```
+cd ~
 pip install --upgrade pip
-pip install torch-scatter -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
-pip install torch-sparse -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
-pip install torch-cluster -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
-pip install torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html
+pip install torch-scatter==2.0.6 -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html
+pip install torch-sparse==0.6.9 -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html
+pip install torch-cluster==1.5.9 -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html
+pip install torch-spline-conv==1.2.1 -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html
 pip install torch-geometric==1.7.2
 pip install ortools==9.0.9048
 ```
